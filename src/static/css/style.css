@@ -1,0 +1,213 @@
+:root {
+    --margin: 10px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+    color: rgb(218, 218, 218);
+    background-color: #242424;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section,
+footer {
+    background-color: rgba(255, 255, 255, 0.112);
+    border-radius: 8px;
+}
+
+section {
+    margin-top: var(--margin);
+    margin-bottom: var(--margin);
+}
+
+/* HEADER - user infos */
+
+header {
+    /* background-color: rgb(147, 229, 229); */
+}
+
+header::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+main {
+    /* border: 1px solid red; */
+    width: 680px;
+}
+
+#user-avatar {
+    width: 50px;
+    border: 3px solid #b47de7c1;
+    border-radius: 50%;
+    float: right;
+}
+
+#user-avatar:hover {
+    cursor: pointer;
+}
+
+/* #username {
+    margin-top: 10px;
+    font-size: 50px;
+} */
+
+/* playing track */
+
+#section-playing-track {
+    /* background-color: rgb(255, 168, 137); */
+    width: 100%;
+    display: flex;
+    padding-top: var(--margin);
+    padding-bottom: var(--margin);
+}
+
+#track-cover {
+    width: 300px;
+    border-radius: 8px;
+    margin-left: var(--margin);
+}
+
+#track-infos {
+    margin-left: var(--margin);
+    display: inline-block;
+    align-self: flex-end;
+    margin-bottom: var(--margin);
+}
+
+#track-infos > * {
+    display: block;
+}
+
+#track-name {
+    font-size: 25px;
+    font-weight: bold;
+    padding-bottom: var(--margin);
+}
+
+#track-author {
+    font-size: 18px;
+}
+
+/* playlist buttons */
+#section-playlist-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 135px;
+    width: 680px;
+    padding-bottom: var(--margin);
+}
+
+.playlist-button {
+    margin-top: var(--margin);
+    border: none;
+    width: 125px;
+    height: 125px;
+
+    margin-left: 5px;
+    padding: 5px;
+
+    border-radius: 5px;
+    font-size: 150%;
+}
+
+.playlist-button:hover {
+    cursor: pointer;
+}
+
+/* FOOTER - controls */
+
+footer {
+    background-color: rgb(234, 107, 132);
+}
+
+#progress-bar {
+    width: 100%;
+    background-color: #242424;
+    height: 5px;
+}
+
+#progress-bar-fg {
+    width: 70%;
+    height: 5px;
+    background-color: #71b738;
+}
+
+#edit-shortcut-overlay {
+    position: absolute;
+    width: 580px;
+
+    background-color: #383838;
+    box-shadow: 0px 0px 45px 30px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    filter: blur(5px);
+    opacity: 35%;
+}
+
+#edit-shortcut-overlay > h2 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    opacity: 60%;
+}
+
+#edit-shortcut-settings {
+    display: flex;
+    /* border: 1px solid green; */
+    padding: var(--margin);
+}
+
+#edit-shortcut-settings-left {
+    /* border: 1px solid rgb(255, 78, 78); */
+    display: block;
+    width: 50%;
+}
+
+#input-shortcut-name {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    color: rgb(218, 218, 218);
+    width: 100%;
+}
+
+#input-shortcut-name,
+#input-shortcut-color {
+    display: block;
+}
+
+#edit-shortcut-settings-right {
+    /* border: 1px solid rgb(65, 65, 255); */
+    width: 50%;
+}
+
+#edit-shortcut-settings-right > h3 {
+    margin-top: 0px;
+    margin-bottom: 8px;
+    text-align: center;
+    opacity: 50%;
+}
+
+#edit-shortcut-settings-playlists-select {
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1) inset;
+    border-radius: 6px;
+    background-color: rgba(53, 53, 53, 0.082);
+    overflow-y: scroll;
+    height: 180px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgb(65, 65, 65) rgba(0, 0, 0, 0.1);
+}
+
+.playlists-select-playlist {
+    /* border: 1px solid blue; */
+    padding: 6px;
+}

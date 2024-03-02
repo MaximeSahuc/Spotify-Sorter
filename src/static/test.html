@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>click to add to playlists</p>
+    <ul>
+        <li>track: 2Gdn4OYLM3jkYNe7g6yLYU</li>
+        <li>playlist 1: 1mHoQhOub2AB4F2xhCnCh4</li>
+        <li>playlist 2: 36NmjYcLLK22Hkz9DG8gGp</li>
+    </ul>
+
+    <button type="button" onclick="add()">add to playlist</button>
+</body>
+<script>
+    function add() {
+        const url = 'http://localhost:3000/playlists';
+        const data = { 
+            playlists: ['1mHoQhOub2AB4F2xhCnCh4', '36NmjYcLLK22Hkz9DG8gGp'], 
+            track: '2Gdn4OYLM3jkYNe7g6yLYU' 
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => console.log('Status Code:', response.status) || response.text())
+        .then(text => console.log('Réponse du serveur:', text))
+        .catch(error => console.error('Erreur lors de la requête:', error));
+    }
+</script>
+</html>

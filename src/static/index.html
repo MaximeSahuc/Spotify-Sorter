@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Sorter</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main>
+        <!-- user infos -->
+        <header id="header">
+            <!-- <span id="username"></span> -->
+            <img src="/img/default_album_image.png" alt="user avatar" id="user-avatar">
+        </header>
+
+        <!-- playing track -->
+        <section id="section-playing-track">
+            <img src="/img/default_album_image.png" alt="track cover" id="track-cover">
+
+            <div id="track-infos">
+                <span id="track-name"></span>
+                <span id="track-author">Loading..</span>
+            </div>
+        </section>
+
+        <!-- playlists buttons -->
+        <section id="section-playlist-buttons"></section>
+    </main>
+
+    <!-- edit shortcut overlay -->
+    <section id="edit-shortcut-overlay">
+        <h2>Edit shortcut</h2>
+
+        <div id="edit-shortcut-settings">
+            <div id="edit-shortcut-settings-left">
+                <input type="text" name="input-shortcut-name" id="input-shortcut-name" placeholder="Shortcut name">
+                <input type="color" name="input-shortcut-color" id="input-shortcut-color">
+                
+                <div id="edit-shortcut-buttons-div">
+                    <button class="edit-shortcut-button secondary-color">cancel</button>
+                    <button class="edit-shortcut-button primary-color">done</button>
+                </div>
+            </div>
+
+            <div id="edit-shortcut-settings-right">
+                <h3>Save into</h3>
+
+                <div id="edit-shortcut-settings-playlists-select">
+                    
+                    <div class="playlists-select-playlist primary-color">
+                        <span class="playlists-select-playlist-name">Playlist 1</span>
+                        <span class="playlists-select-playlist-status">v</span>
+                    </div>
+
+                    <div class="playlists-select-playlist primary-color">
+                        <span class="playlists-select-playlist-name">Playlist 2</span>
+                        <span class="playlists-select-playlist-status">v</span>
+                    </div>
+
+                    <div class="playlists-select-playlist secondary-color">
+                        <span class="playlists-select-playlist-name">Playlist 3</span>
+                        <span class="playlists-select-playlist-status">x</span>
+                    </div>
+
+                    <div class="playlists-select-playlist primary-color">
+                        <span class="playlists-select-playlist-name">Playlist 1</span>
+                        <span class="playlists-select-playlist-status">v</span>
+                    </div>
+
+                    <div class="playlists-select-playlist primary-color">
+                        <span class="playlists-select-playlist-name">Playlist 2</span>
+                        <span class="playlists-select-playlist-status">v</span>
+                    </div>
+
+                    <div class="playlists-select-playlist secondary-color">
+                        <span class="playlists-select-playlist-name">Playlist 3</span>
+                        <span class="playlists-select-playlist-status">x</span>
+                    </div>
+
+                    <div class="playlists-select-playlist primary-color">
+                        <span class="playlists-select-playlist-name">Playlist 1</span>
+                        <span class="playlists-select-playlist-status">v</span>
+                    </div>
+
+                    <div class="playlists-select-playlist primary-color">
+                        <span class="playlists-select-playlist-name">Playlist 2</span>
+                        <span class="playlists-select-playlist-status">v</span>
+                    </div>
+
+                    <div class="playlists-select-playlist secondary-color">
+                        <span class="playlists-select-playlist-name">Playlist 3</span>
+                        <span class="playlists-select-playlist-status">x</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script src="js/utils.js"></script>
+<script src="js/config.js"></script>
+<script src="js/spotify.js"></script>
+<script src="js/frontend.js"></script>
+<script src="js/main.js"></script>
+
+</html>

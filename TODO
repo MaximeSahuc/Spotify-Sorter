@@ -1,0 +1,15 @@
+FUNCTIONS
+- getPlaylists
+- getPlaylistTracks
+- get_playlist_tracks_id
+
+- addTrackToPlaylist
+- addTrackToPlaylists
+
+- is_song_in_playlist
+
+
+
+tutorial : https://blog.logrocket.com/build-rest-api-node-express-mysql/#setting-up-express-js-rest-api
+
+spotify wraper: https://github.com/thelinmichael/spotify-web-api-node?tab=readme-ov-file#usage
