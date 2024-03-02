@@ -1,12 +1,8 @@
-FUNCTIONS
-- getPlaylists
-- getPlaylistTracks
-- get_playlist_tracks_id
-
-- addTrackToPlaylist
-- addTrackToPlaylists
-
-- is_song_in_playlist
+TODO
+- add track to playlists
+- save configuration
+- add new shortcut
+- remove shortcut
 
 
 
