@@ -229,16 +229,19 @@ footer {
     width: 14px;
     height: 14px;
     margin-left: auto;
-    margin-right: 4px;
+    margin-right: 3px;
     align-self: center;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: 2px solid gray;
 }
 
 .selected > .playlist-select-status {
-    width: 16px;
-    height: 16px;
-    background-color: rgb(40 205 115);
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    /* background-color: #28cd73; */
+    background: url('/img/check_circle_icon.svg');
+    background-size: 20px 20px;
     border: none;
 }
 
