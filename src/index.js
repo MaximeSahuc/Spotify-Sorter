@@ -1,5 +1,6 @@
 require('./config');
 require('./services/spotify');
+require('./utils/user_config');
 
 const express = require('express');
 const app = express();
@@ -35,5 +36,25 @@ process.on('SIGINT', () => {
         process.exit(0);
     });
 });
+
+aaaa();
+
+// saveUserConfig('test-user', [
+//     {
+//         a: 'aaa',
+//         b: 'bbb',
+//         c: 'ccc'
+//     },
+//     {
+//         d: 'ddd',
+//         e: 'eee',
+//         f: 'fff'
+//     },
+//     {
+//         g: 'ggg',
+//         h: 'hhh',
+//         i: 'iii'
+//     },
+// ]);
 
 const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
