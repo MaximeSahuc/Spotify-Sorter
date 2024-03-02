@@ -22,8 +22,18 @@ app.get('/me', me);
 app.get('/playlists', playlists);
 app.post('/playlists', playlistsAddTrack);
 
-// app.get("/", (req, res) => {
-//     res.sendFile(`${__dirname}/static/index.html`);
-// });
+// SIGTERM - Docker stop
+process.on('SIGTERM', () => {
+    server.close(() => {
+        process.exit(0);
+    });
+});
 
-app.listen(PORT, () => console.log('Listening on port 3000'));
+// SIGINT - Ctrl+C in terminal
+process.on('SIGINT', () => {
+    server.close(() => {
+        process.exit(0);
+    });
+});
+
+const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
