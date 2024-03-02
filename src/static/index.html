@@ -11,8 +11,10 @@
         <!-- user infos -->
         <header id="header">
             <!-- <span id="username"></span> -->
-            <span id="button-edit-mode">Edit</span>
-            <img src="/img/default_album_image.png" alt="user avatar" id="user-avatar">
+            <button id="button-edit-mode" onclick="toggleEditmode()">
+                <img src="/img/edit_icon.svg" alt="edit icon">
+            </button>
+            <img src="/img/account_icon.svg" alt="user avatar" id="user-avatar">
         </header>
 
         <!-- playing track -->
@@ -21,7 +23,7 @@
 
             <div id="track-infos">
                 <span id="track-name"></span>
-                <span id="track-author">Loading..</span>
+                <span id="track-author"></span>
             </div>
         </section>
 
@@ -30,12 +32,13 @@
     </main>
 
     <!-- edit shortcut overlay -->
-    <section id="edit-shortcut-overlay" style="display: none;">
+    <section id="edit-shortcut-overlay" class="hidden">
         <input type="text" name="input-shortcut-name" id="input-shortcut-name" placeholder="Shortcut name" maxlength="25" value="Uptempo bangers">
 
         <div id="edit-shortcut-settings">
             <div id="edit-shortcut-settings-playlists-select">
-                <div class="playlists-select-playlist selected">
+                <h3>Loading available playlists..</h3>
+                <!-- <div class="playlists-select-playlist selected">
                     <img src="https://mosaic.scdn.co/640/ab67616d0000b2732132f2f49acaaa643e8c5e7dab67616d0000b2732805d3ec1c370e615bef938eab67616d0000b2733904948b1b090ae2470d310dab67616d0000b2734423be9e60c4b1d12bc9a609" alt="playlist image" class="select-playlist-image">
                     <span class="playlists-select-playlist-name">Résidence du crack</span>
                     <div class="playlist-select-status shadows"></div>
@@ -87,14 +90,14 @@
                     <img src="https://mosaic.scdn.co/640/ab67616d0000b2732132f2f49acaaa643e8c5e7dab67616d0000b2732805d3ec1c370e615bef938eab67616d0000b2733904948b1b090ae2470d310dab67616d0000b2734423be9e60c4b1d12bc9a609" alt="playlist image" class="select-playlist-image">
                     <span class="playlists-select-playlist-name">dnb</span>
                     <div class="playlist-select-status"></div>
-                </div>
+                </div> -->
             </div>
             
             <input type="color" name="input-shortcut-color" id="input-shortcut-color">
 
             <div id="edit-shortcut-buttons-div">
-                <button class="edit-shortcut-button">cancel</button>
-                <button class="edit-shortcut-button done shadows">done</button>
+                <button class="edit-shortcut-button" onclick="overlayOff()">cancel</button>
+                <button class="edit-shortcut-button done shadows" id="btn-save-shortcut">done</button>
             </div>
         </div>
     </section>
