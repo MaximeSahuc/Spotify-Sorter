@@ -1,9 +1,9 @@
 TODO
-- add track to playlists
 - save configuration
+
+- add track to playlists
 - add new shortcut
 - remove shortcut
-
 
 
 spotify wraper: https://github.com/thelinmichael/spotify-web-api-node?tab=readme-ov-file#usage
