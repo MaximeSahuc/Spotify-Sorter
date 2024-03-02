@@ -10,7 +10,7 @@ function updateCurrentTrack(track) {
     if (Object.keys(track).length) {
         CURRENT_TRACK_ID = track.id;
 
-        document.getElementById('track-cover').src = track.image;
+        document.getElementById('track-cover').src = track.image.replace('i.scdn.co', 'mosaic.scdn.co');
         document.getElementById('track-name').innerHTML = track.name;
         document.getElementById('track-author').innerHTML = track.artists;
     }
@@ -48,7 +48,6 @@ function shortcutClicked(id) {
 
 async function editShortcut(id) {
     overlayOn();
-    console.log(`shortcut edit ${id}`);
 
     const shortcut = SHORTCUTS.find(shortcut => shortcut.id === id);
 
@@ -66,9 +65,11 @@ async function editShortcut(id) {
 
     // display user's playlists
     const availiblePlaylistsContainer = document.getElementById('edit-shortcut-settings-playlists-select');
-    var playlists = await getUserPlaylists();
+    availiblePlaylistsContainer.innerHTML = '<h3>Loading available playlists..</h3>';
 
+    var playlists = await getUserPlaylists();
     availiblePlaylistsContainer.innerHTML = '';
+
     for (playlist of playlists) {
         availiblePlaylistsContainer.innerHTML += createPlaylistElement(playlist.name, playlist.image, playlist.id, isPlaylistSelectedInShortcut(id, playlist.id));
     }
@@ -107,6 +108,7 @@ function saveShortcut(shortcutId) {
     document.getElementById(shortcutId).style.backgroundColor = shortcutColor;
 
     // save data server side
+    saveUserData(SHORTCUTS);
 
     overlayOff();
 }
