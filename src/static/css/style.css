@@ -151,11 +151,18 @@ main {
     opacity: 35%;
 }
 
-#edit-shortcut-overlay > h2 {
+#input-shortcut-name {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
-    opacity: 60%;
+    /* opacity: 60%; */
+
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 28px;
+    color: rgb(205, 205, 205);
+    width: 100%;
 }
 
 #edit-shortcut-settings {
@@ -170,16 +177,6 @@ main {
     width: 50%;
 }
 
-#input-shortcut-name {
-    background-color: transparent;
-    outline: none;
-    border: none;
-    font-size: 20px;
-    color: rgb(218, 218, 218);
-    width: 100%;
-}
-
-#input-shortcut-name,
 #input-shortcut-color {
     display: block;
 }
@@ -197,7 +194,7 @@ main {
 }
 
 #edit-shortcut-settings-playlists-select {
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0px 0px 3px 5px rgba(0, 0, 0, 0.1) inset;
     border-radius: 6px;
     background-color: rgba(53, 53, 53, 0.082);
     overflow-y: scroll;
@@ -208,6 +205,59 @@ main {
 }
 
 .playlists-select-playlist {
-    /* border: 1px solid blue; */
-    padding: 6px;
+    /* border: 1px solid red; */
+    padding: 8px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    display: flex;
+    color: white;
+}
+
+.playlists-select-playlist-name {
+    /* border: 1px solid green; */
+    line-height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selected {
+    /* background-color: #4557a7; */
+}
+
+.edit-shortcut-button {
+    border: none;
+    padding: 5px 11px 5px 11px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: rgb(205, 205, 205);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.done {
+    background-color: rgb(245, 245, 245);
+    color: rgb(26, 26, 26);
+}
+
+.select-playlist-image {
+    width: 25px;
+    padding: 0px 10px 0px 6px;
+}
+
+.playlists-select-playlist > .playlist-select-status {
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    margin-right: 2px;
+    align-self: center;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.selected > .playlist-select-status {
+    width: 16px;
+    height: 16px;
+    background-color: rgb(40 205 115);
+    border: none;
 }
