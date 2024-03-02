@@ -28,6 +28,10 @@ module.exports = async (req, res) => {
             });
     }
 
+    playlists.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+    });
+
     res.type('json')
     res.json({
         playlists: playlists,
