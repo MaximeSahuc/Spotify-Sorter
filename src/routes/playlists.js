@@ -44,7 +44,7 @@ function getPlaylistData(playlist) {
     return {
         name: playlist.name,
         id: playlist.id,
-        image: playlist.images.length != 0 ? playlist.images[0].url : `${baseUrl}/img/default_album_image.png`,
+        image: playlist.images.length != 0 ? playlist.images[0].url : `${baseUrl}/img/default-album-image.png`,
         tracks: playlist.tracks.total
     }
 }
