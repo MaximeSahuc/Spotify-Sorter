@@ -6,9 +6,19 @@ module.exports = async (req, res) => {
 
     baseUrl = `${req.protocol}://${req.hostname}:${PORT}`;
 
-    var playlists = [];
+    var playlists = [
+        {
+            name: 'Liked Songs',
+            id: 'saved_tracks',
+            image: '/img/liked-songs.png'
+        }
+    ];
+
     var hasNext = true;
     var offset = 0;
+
+    var tmpPlaylistsStartWithLetter = [];
+    var tmpPlaylistsStartWithNumOrPunct = [];
 
     while (hasNext) {
         await spotifyApi.getUserPlaylists({ offset: offset })
@@ -18,7 +28,13 @@ module.exports = async (req, res) => {
 
                 data.body.items.forEach(playlist => {
                     if (playlist.owner.id == USER_ID) {
-                        playlists.push(getPlaylistData(playlist));
+                        const playlistData = getPlaylistData(playlist);
+
+                        if (startsWithNumOrPunct(playlistData.name)) {
+                            tmpPlaylistsStartWithNumOrPunct.push(playlistData);
+                        } else {
+                            tmpPlaylistsStartWithLetter.push(playlistData);
+                        }
                     }
                 });
 
@@ -28,9 +44,16 @@ module.exports = async (req, res) => {
             });
     }
 
-    playlists.sort((a, b) => {
+    // sort playlists
+    tmpPlaylistsStartWithLetter.sort((a, b) => {
         return a.name.localeCompare(b.name);
     });
+
+    tmpPlaylistsStartWithNumOrPunct.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+    });
+
+    playlists.push(...tmpPlaylistsStartWithLetter, ...tmpPlaylistsStartWithNumOrPunct);
 
     res.type('json');
     res.json({
@@ -45,6 +68,10 @@ function getPlaylistData(playlist) {
         name: playlist.name,
         id: playlist.id,
         image: playlist.images.length != 0 ? playlist.images[0].url : `${baseUrl}/img/default-album-image.png`,
-        tracks: playlist.tracks.total
     }
+}
+
+function startsWithNumOrPunct(text) {
+    const regex = /^(\d|\p{P})/u;
+    return regex.test(text);
 }
