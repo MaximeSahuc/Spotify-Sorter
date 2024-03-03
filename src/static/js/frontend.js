@@ -171,6 +171,9 @@ function enterEditmode() {
         }
     }
 
+    document.getElementById('button-edit-mode').classList.remove('button-edit-mode-off');
+    document.getElementById('button-edit-mode').classList.add('button-edit-mode-on');
+
     showElement('playlist-button-add-new');
 }
 
@@ -183,6 +186,9 @@ function exitEditmode() {
             shortcut.classList.remove('playlist-button-edit-mode');
         }
     }
+
+    document.getElementById('button-edit-mode').classList.remove('button-edit-mode-on');
+    document.getElementById('button-edit-mode').classList.add('button-edit-mode-off');
 
     hideElement('playlist-button-add-new');
 }

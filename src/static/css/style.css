@@ -32,11 +32,7 @@ header {
 
 #button-edit-mode {
     /* border: 1px solid yellow; */
-    width: 50px;
-    height: 55px;
-    background-color: transparent;
     border: none;
-    opacity: 35%;
     cursor: pointer;
 }
 
@@ -44,8 +40,30 @@ header {
     opacity: 85%;
 }
 
-#button-edit-mode > img {
-    height: 28px;
+.button-edit-mode-off {
+    background-color: transparent;
+    opacity: 35%;
+    width: 50px;
+    height: 38px;
+    margin-top: 15px;
+
+    background: url('/img/edit.svg');
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    background-position: center;
+}
+
+.button-edit-mode-on {
+    background-color: white;
+    width: 65px;
+    height: 29px;
+    border-radius: 16px;
+    font-size: 16px;
+    margin-top: 25px;
+}
+
+.button-edit-mode-on:after {
+    content: 'Done';
 }
 
 header::after {
