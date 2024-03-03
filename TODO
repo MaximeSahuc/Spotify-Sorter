@@ -1,7 +1,17 @@
 TODO
-- add track to playlists
-- add new shortcut
+- add track to saved tracks
 - remove shortcut
+
+- barre de recherche des playlists
+
+- intuitive edit mode button
+- animations
+
+- change shortcut order
+
+- player inspiré mode fullscreen de spotify
+
+- new color picker
 
 
 spotify wraper: https://github.com/thelinmichael/spotify-web-api-node?tab=readme-ov-file#usage

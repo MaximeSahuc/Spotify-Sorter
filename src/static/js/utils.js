@@ -6,3 +6,7 @@ function getRandomColor() {
     }
     return color;
 }
+
+function getShortcut(shortcutId) {
+    return SHORTCUTS.find(shortcut => shortcut.id === shortcutId);
+}
