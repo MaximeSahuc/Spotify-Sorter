@@ -26,14 +26,10 @@ section {
 
 /* HEADER - user infos */
 
-header {
-    /* border: 1px solid red; */
-}
-
 #button-edit-mode {
-    /* border: 1px solid yellow; */
     border: none;
     cursor: pointer;
+    transition: opacity 100ms ease-in-out;
 }
 
 #button-edit-mode:hover {
@@ -74,8 +70,8 @@ header::after {
 }
 
 main {
-    /* border: 1px solid red; */
     width: 680px;
+    transition: all 100ms ease-in-out;
 }
 
 #user-avatar {
@@ -85,14 +81,6 @@ main {
     float: right;
 }
 
-#user-avatar:hover {
-    /* cursor: pointer; */
-}
-
-/* #username {
-    margin-top: 10px;
-    font-size: 50px;
-} */
 
 /* playing track */
 
@@ -131,30 +119,13 @@ main {
     font-size: 18px;
 }
 
-/* playlist buttons */
-#section-playlist-buttons {
+/* shortcuts */
+#section-shortcuts {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: 135px;
     width: 680px;
     padding-bottom: var(--margin);
-}
-
-.playlist-button {
-    margin-top: var(--margin);
-    border: none;
-    width: 125px;
-    height: 125px;
-
-    margin-left: 5px;
-    overflow: visible;
-
-    border-radius: 5px;
-    font-size: 21px;
-}
-
-.playlist-button:hover {
-    cursor: pointer;
 }
 
 /* FOOTER - controls */
@@ -309,4 +280,94 @@ footer {
 
 .hidden {
     display: none;
+}
+
+/* ------------- SHORTCUT BUTTONS ------------- */
+
+.shortcut-btn {
+    margin-top: var(--margin);
+    width: 125px;
+    height: 125px;
+    margin-left: 5px;
+    border-radius: 5px;
+    font-size: 21px;
+    color: #242424;
+    text-align: center;
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.shortcut-btn-text {
+    margin-top: auto;
+    margin-bottom: auto;
+    transition: all 100ms ease-in-out;
+}
+
+.shortcut-btn:hover > .shortcut-btn-text {
+    font-size: 102%;
+}
+
+.shortcut-btn > .shortcut-btn-options {
+    display: none;
+    align-self: stretch;
+    margin-top: 0;
+    justify-content: space-between;
+}
+
+.shortcut-btn-edit-mode > .shortcut-btn-options {
+    display: flex;
+}
+
+.shortcut-btn-option-delete,
+.shortcut-btn-option-edit {
+    background-color: #3b3a3a;
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: all 150ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.shortcut-btn-option-delete:hover,
+.shortcut-btn-option-edit:hover {
+    width: 32px;
+    height: 32px;
+}
+
+.shortcut-btn-option-delete {
+    border-radius: 3px 0px 12px 0px;
+    background-image: url('/img/delete.svg');
+    background-size: 20px 20px;
+}
+
+.shortcut-btn-option-edit {
+    margin-left: auto;
+    float: right;
+    border-radius: 0px 3px 0px 12px;
+    background-image: url('/img/edit.svg');
+    background-size: 16px 16px;
+    background-position-x: 9px;
+}
+
+#shortcut-button-add-new {
+    margin-top: var(--margin);
+    width: 125px;
+    height: 125px;
+    margin-left: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+
+    background: url("/img/add.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    background-color: rgba(255, 255, 255, 0.06);
 }

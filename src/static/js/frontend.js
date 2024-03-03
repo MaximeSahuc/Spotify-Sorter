@@ -17,19 +17,34 @@ function updateCurrentTrack(track) {
 }
 
 function updateShortcuts() {
-    document.getElementById('section-playlist-buttons').innerHTML = '';
+    document.getElementById('section-shortcuts').innerHTML = '';
 
     for (shortcut of SHORTCUTS) {
-        document.getElementById('section-playlist-buttons').innerHTML +=
-            `<button style="background-color: ${shortcut.color};" class="playlist-button  ${IS_IN_EDIT_MODE ? 'playlist-button-edit-mode' : ''}" onclick="shortcutClicked('${shortcut.id}')" id="${shortcut.id}">${shortcut.name}</button>`;
+        document.getElementById('section-shortcuts').innerHTML +=
+            `<div class="shortcut-btn ${IS_IN_EDIT_MODE ? 'shortcut-btn-edit-mode' : ''}" style="background-color: ${shortcut.color};" onclick="shortcutClicked('${shortcut.id}')" id="${shortcut.id}">
+            <div class="shortcut-btn-options">
+                <div class="shortcut-btn-option-delete" onclick="deleteShortcut('${shortcut.id}')"></div>
+                <div class="shortcut-btn-option-edit" onclick="editShortcut('${shortcut.id}')"></div>
+            </div>
+            <span class="shortcut-btn-text">${shortcut.name}</span>
+        </div>`;
     }
 
-    document.getElementById('section-playlist-buttons').innerHTML += `<button class="playlist-button ${IS_IN_EDIT_MODE ? '' : 'hidden'}" onclick="createNewShortcut()" id="playlist-button-add-new")"></button>`;
+    document.getElementById('section-shortcuts').innerHTML +=
+        `<div class="${IS_IN_EDIT_MODE ? '' : 'hidden'}" onclick="createNewShortcut()" id="shortcut-button-add-new"></div>`;
 
     if (SHORTCUTS.length == 0) {
         IS_IN_EDIT_MODE = true;
         enterEditmode();
     }
+}
+
+function deleteShortcut(shortcutId) {
+    SHORTCUTS = SHORTCUTS.filter(shortcut => shortcut.id != shortcutId);
+    updateShortcuts();
+
+    // save data server side
+    saveUserConfig(SHORTCUTS);
 }
 
 function createNewShortcut() {
@@ -51,11 +66,8 @@ function createNewShortcut() {
 }
 
 function shortcutClicked(id) {
-    if (IS_IN_EDIT_MODE) {
-        editShortcut(id);
-    } else {
+    if (!IS_IN_EDIT_MODE)
         shortcutCallback(id);
-    }
 }
 
 // Add the current track to the shortcut's playlists
@@ -126,7 +138,7 @@ function saveShortcut(shortcutId) {
     shortcut.name = shortcutName;
 
     // Update html
-    document.getElementById(shortcutId).innerHTML = shortcutName;
+    document.getElementById(shortcutId).querySelector('span').textContent = shortcutName;
     document.getElementById(shortcutId).style.backgroundColor = shortcutColor;
 
     // save data server side
@@ -162,35 +174,35 @@ function togglePlaylistSelect(id) {
 }
 
 function enterEditmode() {
-    const shortcuts = document.getElementsByClassName('playlist-button');
+    const shortcuts = document.getElementsByClassName('shortcut-btn');
 
     if (shortcuts) {
         for (let index = 0; index < shortcuts.length; index++) {
             const shortcut = shortcuts[index];
-            shortcut.classList.add('playlist-button-edit-mode');
+            shortcut.classList.add('shortcut-btn-edit-mode');
         }
     }
 
     document.getElementById('button-edit-mode').classList.remove('button-edit-mode-off');
     document.getElementById('button-edit-mode').classList.add('button-edit-mode-on');
 
-    showElement('playlist-button-add-new');
+    showElement('shortcut-button-add-new');
 }
 
 function exitEditmode() {
-    const shortcuts = document.getElementsByClassName('playlist-button');
+    const shortcuts = document.getElementsByClassName('shortcut-btn');
 
     if (shortcuts) {
         for (let index = 0; index < shortcuts.length; index++) {
             const shortcut = shortcuts[index];
-            shortcut.classList.remove('playlist-button-edit-mode');
+            shortcut.classList.remove('shortcut-btn-edit-mode');
         }
     }
 
     document.getElementById('button-edit-mode').classList.remove('button-edit-mode-on');
     document.getElementById('button-edit-mode').classList.add('button-edit-mode-off');
 
-    hideElement('playlist-button-add-new');
+    hideElement('shortcut-button-add-new');
 }
 
 function showElement(elementId) {
