@@ -9,6 +9,12 @@ module.exports = async (req, res) => {
 
     var error = false;
     for (let playlistId of req.body.playlists) {
+        if (playlistId == 'saved_tracks') {
+            console.log('Trying to add track to saved tracks');
+            await addToSavedTracks(trackId);
+            continue;
+        }
+
         if (! await isAlreadyInPlaylist(playlistId, trackId)) {
             try {
                 await spotifyApi.addTracksToPlaylist(playlistId, [`spotify:track:${trackId}`]);
@@ -39,4 +45,20 @@ async function isAlreadyInPlaylist(playlistId, trackId) {
     }
 
     return false;
+}
+
+async function addToSavedTracks(trackId) {
+    const isTrackSavedData = await spotifyApi.containsMySavedTracks([trackId]);
+    const isTrackSaved = isTrackSavedData.body[0];
+
+    if (!isTrackSaved) {
+        console.log('trying to add to saved tracks');
+        spotifyApi.addToMySavedTracks([trackId]).then(data => {
+            console.log('Added track to saved tracks');
+        }, err => {
+            console.log('Error while adding track to saved tracks', err);
+        })
+    } else {
+        console.log('Skipping, track already saved');
+    }
 }

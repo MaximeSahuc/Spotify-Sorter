@@ -92,6 +92,10 @@ async function editShortcut(id) {
     var playlists = await getUserPlaylists();
     availiblePlaylistsContainer.innerHTML = '';
 
+    // Add liked songs playlist
+    availiblePlaylistsContainer.innerHTML += createPlaylistElement('Liked Songs', '/img/liked-songs.png', 'saved_tracks', isPlaylistSelectedInShortcut(id, 'saved_tracks'));
+
+    // Add user's playlists
     for (playlist of playlists) {
         availiblePlaylistsContainer.innerHTML += createPlaylistElement(playlist.name, playlist.image, playlist.id, isPlaylistSelectedInShortcut(id, playlist.id));
     }

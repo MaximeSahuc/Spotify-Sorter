@@ -1,17 +1,16 @@
-TODO
-- add track to saved tracks
+TODO 
 - remove shortcut
+- playlists search bar
 
-- barre de recherche des playlists
-
+UPGRADES
 - intuitive edit mode button
 - animations
-
 - change shortcut order
-
 - player inspiré mode fullscreen de spotify
-
 - new color picker
+- data caching
 
+TODO BUILD
+- linter
 
 spotify wraper: https://github.com/thelinmichael/spotify-web-api-node?tab=readme-ov-file#usage
