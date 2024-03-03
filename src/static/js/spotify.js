@@ -1,4 +1,5 @@
 var CURRENT_TRACK_ID;
+var USER_ID;
 
 async function getUserData() {
     var response = await fetch('/me');
@@ -39,8 +40,4 @@ async function saveTrackToPlaylists(trackId, toPlaylists) {
 
     const status = await response.statusText;
     console.log(`saving track status : ${status}`);
-}
-
-async function saveUserData(config) {
-
 }
