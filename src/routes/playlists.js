@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         return a.name.localeCompare(b.name);
     });
 
-    res.type('json')
+    res.type('json');
     res.json({
         playlists: playlists,
         total: playlists.length
