@@ -89,14 +89,10 @@ async function editShortcut(id) {
     const availiblePlaylistsContainer = document.getElementById('edit-shortcut-settings-playlists-select');
     availiblePlaylistsContainer.innerHTML = '<h3>Loading available playlists..</h3>';
 
-    var playlists = await getUserPlaylists();
     availiblePlaylistsContainer.innerHTML = '';
 
-    // Add liked songs playlist
-    availiblePlaylistsContainer.innerHTML += createPlaylistElement('Liked Songs', '/img/liked-songs.png', 'saved_tracks', isPlaylistSelectedInShortcut(id, 'saved_tracks'));
-
     // Add user's playlists
-    for (playlist of playlists) {
+    for (playlist of AVAILIBLE_PLAYLISTS) {
         availiblePlaylistsContainer.innerHTML += createPlaylistElement(playlist.name, playlist.image, playlist.id, isPlaylistSelectedInShortcut(id, playlist.id));
     }
 }

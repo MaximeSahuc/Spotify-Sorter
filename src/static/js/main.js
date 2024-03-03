@@ -9,6 +9,7 @@ async function init() {
     const user = await getUserData();
     USER_ID = user.id;
 
+    // load user's config
     const userConfig = await getUserConfig(USER_ID);
     if (userConfig) {
         SHORTCUTS = userConfig;
@@ -16,6 +17,7 @@ async function init() {
     }
 
     updateShortcuts();
+    loadUserPlaylists();
 
     setInterval(update, 2000); // Update player every 2 seconds
 }
