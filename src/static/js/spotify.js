@@ -40,8 +40,9 @@ async function saveTrackToPlaylists(trackId, toPlaylists) {
         body: JSON.stringify(postData)
     });
 
-    const status = await response.statusText;
-    console.log(`saving track status : ${status}`);
+    const status = await response.status;
+    if (status != 200)
+        console.log(`saving track status : ${status}`);
 }
 
 async function loadUserPlaylists() {
