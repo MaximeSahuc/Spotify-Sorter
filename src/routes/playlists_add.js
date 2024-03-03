@@ -1,7 +1,7 @@
 require('../services/spotify');
 
 module.exports = async (req, res) => {
-    console.log('request to `add track to playlist` endpoint');
+    // console.log('request to `add track to playlist` endpoint');
 
     res.type('json');
 

@@ -21,7 +21,7 @@ function updateShortcuts() {
 
     for (shortcut of SHORTCUTS) {
         document.getElementById('section-playlist-buttons').innerHTML +=
-            `<button style="background-color: ${shortcut.color};" class="playlist-button" onclick="shortcutClicked('${shortcut.id}')" id="${shortcut.id}">${shortcut.name}</button>`;
+            `<button style="background-color: ${shortcut.color};" class="playlist-button  ${IS_IN_EDIT_MODE ? 'playlist-button-edit-mode' : ''}" onclick="shortcutClicked('${shortcut.id}')" id="${shortcut.id}">${shortcut.name}</button>`;
     }
 
     document.getElementById('section-playlist-buttons').innerHTML += `<button class="playlist-button ${IS_IN_EDIT_MODE ? '' : 'hidden'}" onclick="createNewShortcut()" id="playlist-button-add-new")"></button>`;
@@ -44,7 +44,10 @@ function createNewShortcut() {
         playlists: []
     });
 
-    updateShortcuts(); // only update localy
+    updateShortcuts();
+
+    // save data server side
+    saveUserConfig(SHORTCUTS);
 }
 
 function shortcutClicked(id) {
@@ -55,10 +58,20 @@ function shortcutClicked(id) {
     }
 }
 
+// Add the current track to the shortcut's playlists
+function shortcutCallback(shortcutId) {
+    if (!CURRENT_TRACK_ID)
+        return;
+
+    const shortcut = getShortcut(shortcutId);
+
+    saveTrackToPlaylists(CURRENT_TRACK_ID, shortcut.playlists);
+}
+
 async function editShortcut(id) {
     overlayOn();
 
-    const shortcut = SHORTCUTS.find(shortcut => shortcut.id === id);
+    const shortcut = getShortcut(id);
 
     // set shortcut name in menu to last saved value
     const shortcutNameElement = document.getElementById('input-shortcut-name');
@@ -85,12 +98,12 @@ async function editShortcut(id) {
 }
 
 function isPlaylistSelectedInShortcut(shortcutId, playlistId) {
-    const shortcut = SHORTCUTS.find(shortcut => shortcut.id === shortcutId);
+    const shortcut = getShortcut(shortcutId);
     return shortcut.playlists.includes(playlistId);
 }
 
 function saveShortcut(shortcutId) {
-    const shortcut = SHORTCUTS.find(shortcut => shortcut.id === shortcutId);
+    const shortcut = getShortcut(shortcutId);
     var selectedPlaylists = [];
 
     // update selected playlists in local variable
@@ -146,13 +159,6 @@ function togglePlaylistSelect(id) {
     } else {
         element.classList.add('selected')
     }
-}
-
-function shortcutCallback(id) {
-    if (!CURRENT_TRACK_ID)
-        return;
-
-    console.log(`shortcut callback ${id}`);
 }
 
 function enterEditmode() {
