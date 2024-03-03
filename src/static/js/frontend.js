@@ -16,26 +16,35 @@ function updateCurrentTrack(track) {
     }
 }
 
-function displayShortcuts() {
+function updateShortcuts() {
     document.getElementById('section-playlist-buttons').innerHTML = '';
 
-    for (let index = 0; index < 15; index++) {
-        const name = `Shortcut ${index}`;
-        const id = self.crypto.randomUUID();
-        const color = getRandomColor();
-
-        SHORTCUTS.push({
-            name: name,
-            id: id,
-            color: color,
-            playlists: []
-        });
-
+    for (shortcut of SHORTCUTS) {
         document.getElementById('section-playlist-buttons').innerHTML +=
-            `<button style="background-color: ${color};" class="playlist-button" onclick="shortcutClicked('${id}')" id="${id}">${name}</button>`;
+            `<button style="background-color: ${shortcut.color};" class="playlist-button" onclick="shortcutClicked('${shortcut.id}')" id="${shortcut.id}">${shortcut.name}</button>`;
     }
 
-    document.getElementById('section-playlist-buttons').innerHTML += `<button class="playlist-button hidden" id="playlist-button-add-new")"></button>`;
+    document.getElementById('section-playlist-buttons').innerHTML += `<button class="playlist-button ${IS_IN_EDIT_MODE ? '' : 'hidden'}" onclick="createNewShortcut()" id="playlist-button-add-new")"></button>`;
+
+    if (SHORTCUTS.length == 0) {
+        IS_IN_EDIT_MODE = true;
+        enterEditmode();
+    }
+}
+
+function createNewShortcut() {
+    const name = 'New shortcut';
+    const id = self.crypto.randomUUID();
+    const color = getRandomColor();
+
+    SHORTCUTS.push({
+        name: name,
+        id: id,
+        color: color,
+        playlists: []
+    });
+
+    updateShortcuts(); // only update localy
 }
 
 function shortcutClicked(id) {
@@ -108,7 +117,7 @@ function saveShortcut(shortcutId) {
     document.getElementById(shortcutId).style.backgroundColor = shortcutColor;
 
     // save data server side
-    saveUserData(SHORTCUTS);
+    saveUserConfig(SHORTCUTS);
 
     overlayOff();
 }
@@ -148,9 +157,12 @@ function shortcutCallback(id) {
 
 function enterEditmode() {
     const shortcuts = document.getElementsByClassName('playlist-button');
-    for (let index = 0; index < shortcuts.length; index++) {
-        const shortcut = shortcuts[index];
-        shortcut.classList.add('playlist-button-edit-mode');
+
+    if (shortcuts) {
+        for (let index = 0; index < shortcuts.length; index++) {
+            const shortcut = shortcuts[index];
+            shortcut.classList.add('playlist-button-edit-mode');
+        }
     }
 
     showElement('playlist-button-add-new');
@@ -158,9 +170,12 @@ function enterEditmode() {
 
 function exitEditmode() {
     const shortcuts = document.getElementsByClassName('playlist-button');
-    for (let index = 0; index < shortcuts.length; index++) {
-        const shortcut = shortcuts[index];
-        shortcut.classList.remove('playlist-button-edit-mode');
+
+    if (shortcuts) {
+        for (let index = 0; index < shortcuts.length; index++) {
+            const shortcut = shortcuts[index];
+            shortcut.classList.remove('playlist-button-edit-mode');
+        }
     }
 
     hideElement('playlist-button-add-new');

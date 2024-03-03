@@ -32,6 +32,7 @@ module.exports = async (req, res) => {
             res.json(
                 {
                     username: USER_DISPLAY_NAME,
+                    id: USER_ID,
                     avatar: USER_AVATAR,
                     now_playing: nowPlaying
                 }
