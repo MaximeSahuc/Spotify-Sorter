@@ -8,6 +8,7 @@ async function update() {
 async function init() {
     const user = await getUserData();
     USER_ID = user.id;
+    console.log('user id', USER_ID);
 
     // load user's config
     const userConfig = await getUserConfig(USER_ID);
