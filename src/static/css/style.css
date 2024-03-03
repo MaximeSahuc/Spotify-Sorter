@@ -43,7 +43,8 @@ header {
 .button-edit-mode-off {
     background-color: transparent;
     opacity: 35%;
-    width: 50px;
+    width: 38px;
+    margin-left: -3px;
     height: 38px;
     margin-top: 15px;
 
