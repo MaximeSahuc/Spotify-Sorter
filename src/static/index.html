@@ -1,55 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spotify Sorter</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <main>
-        <!-- user infos -->
-        <header id="header">
-            <!-- <span id="username"></span> -->
-            <button id="button-edit-mode" class="button-edit-mode-off" onclick="toggleEditmode()"></button>
-            <img src="/img/account.svg" alt="user avatar" id="user-avatar">
-        </header>
+      <!-- user infos -->
+      <header id="header">
+        <!-- <span id="username"></span> -->
+        <button
+          id="button-edit-mode"
+          class="button-edit-mode-off"
+          onclick="toggleEditmode()"
+        ></button>
+        <img src="/img/account.svg" alt="user avatar" id="user-avatar" />
+      </header>
 
-        <!-- playing track -->
-        <section id="section-playing-track">
-            <img src="/img/default-album-image.png" alt="track cover" id="track-cover">
+      <!-- playing track -->
+      <section id="section-playing-track">
+        <img
+          src="/img/default-album-image.png"
+          alt="track cover"
+          id="track-cover"
+        />
 
-            <div id="track-infos">
-                <span id="track-name"></span>
-                <span id="track-author"></span>
-            </div>
-        </section>
+        <div id="track-infos">
+          <span id="track-name"></span>
+          <span id="track-author"></span>
+        </div>
+      </section>
 
-        <!-- playlists buttons -->
-        <section id="section-shortcuts"></section>
+      <!-- playlists buttons -->
+      <section id="section-shortcuts"></section>
     </main>
 
     <!-- edit shortcut overlay -->
     <section id="edit-shortcut-overlay" class="hidden">
-        <input type="text" name="input-shortcut-name" id="input-shortcut-name" placeholder="Shortcut name" maxlength="25" value="Uptempo bangers">
+      <input
+        type="text"
+        name="input-shortcut-name"
+        id="input-shortcut-name"
+        placeholder="Shortcut name"
+        maxlength="25"
+      />
 
-        <div id="edit-shortcut-settings">
-            <div id="edit-shortcut-settings-playlists-select"></div>
-            
-            <input type="color" name="input-shortcut-color" id="input-shortcut-color">
-
-            <div id="edit-shortcut-buttons-div">
-                <button class="edit-shortcut-button" onclick="overlayOff()">cancel</button>
-                <button class="edit-shortcut-button done shadows" id="btn-save-shortcut">done</button>
-            </div>
+      <div id="edit-shortcut-settings">
+        <div id="edit-shortcut-settings-playlists-select">
+          <input
+            type="text"
+            name="input-search-playlist"
+            id="input-search-playlist"
+            placeholder="Find a playlist"
+            maxlength="25"
+          />
+          <div id="edit-shortcut-settings-playlists-container">
+            <h3>Loading available playlists..</h3>
+          </div>
         </div>
+
+        <input
+          type="color"
+          name="input-shortcut-color"
+          id="input-shortcut-color"
+        />
+
+        <div id="edit-shortcut-buttons-div">
+          <button class="edit-shortcut-button" onclick="overlayOff()">
+            cancel
+          </button>
+          <button
+            class="edit-shortcut-button done shadows"
+            id="btn-save-shortcut"
+          >
+            done
+          </button>
+        </div>
+      </div>
     </section>
-</body>
+  </body>
 
-<script src="js/utils.js"></script>
-<script src="js/config.js"></script>
-<script src="js/spotify.js"></script>
-<script src="js/frontend.js"></script>
-<script src="js/main.js"></script>
-
+  <script src="js/utils.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/spotify.js"></script>
+  <script src="js/frontend.js"></script>
+  <script src="js/main.js"></script>
 </html>
