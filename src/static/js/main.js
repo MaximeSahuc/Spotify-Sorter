@@ -17,8 +17,7 @@ async function init() {
         console.log('loaded user config');
     }
 
-    updateShortcuts();
-    loadUserPlaylists();
+    initFrontend();
 
     setInterval(update, 2000); // Update player every 2 seconds
 }
