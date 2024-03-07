@@ -80,32 +80,42 @@ function shortcutCallback(shortcutId) {
     saveTrackToPlaylists(CURRENT_TRACK_ID, shortcut.playlists);
 }
 
-async function editShortcut(id) {
+var CURRENT_SHORTCUT_ID;
+async function editShortcut(shortcutId) {
+    CURRENT_SHORTCUT_ID = shortcutId;
     overlayOn();
 
-    const shortcut = getShortcut(id);
+    const shortcut = getShortcut(shortcutId);
 
     // set shortcut name in menu to last saved value
     const shortcutNameElement = document.getElementById('input-shortcut-name');
     shortcutNameElement.value = shortcut.name;
-    document.getElementById('btn-save-shortcut').setAttribute('onclick', `saveShortcut("${id}")`);
+    document.getElementById('btn-save-shortcut').setAttribute('onclick', `saveShortcut("${shortcutId}")`);
 
     // set shortcut color in menu to last saved value
     const shortcutColorElement = document.getElementById('input-shortcut-color');
     shortcutColorElement.value = shortcut.color;
 
+    // display user's playlists
+    addPlaylistsToPopup(shortcutId, AVAILIBLE_PLAYLISTS);
+
     // display menu
     showElement('edit-shortcut-overlay');
+}
 
-    // display user's playlists
-    const availiblePlaylistsContainer = document.getElementById('edit-shortcut-settings-playlists-select');
-    availiblePlaylistsContainer.innerHTML = '<h3>Loading available playlists..</h3>';
+function addPlaylistsToPopup(shortcutId, playlists) {
+    if (!playlists)
+        return;
+
+    const availiblePlaylistsContainer = document.getElementById(
+      "edit-shortcut-settings-playlists-container"
+    );
 
     availiblePlaylistsContainer.innerHTML = '';
 
     // Add user's playlists
-    for (playlist of AVAILIBLE_PLAYLISTS) {
-        availiblePlaylistsContainer.innerHTML += createPlaylistElement(playlist.name, playlist.image, playlist.id, isPlaylistSelectedInShortcut(id, playlist.id));
+    for (playlist of playlists) {
+        availiblePlaylistsContainer.innerHTML += createPlaylistElement(playlist.name, playlist.image, playlist.id, isPlaylistSelectedInShortcut(shortcutId, playlist.id));
     }
 }
 
@@ -223,4 +233,22 @@ function toggleEditmode() {
     } else {
         exitEditmode();
     }
+}
+
+function onPlaylistSearchEvent() {
+    const searchbar = document.getElementById('input-search-playlist');
+    const text = searchbar.value;
+    
+    const searchResult = AVAILIBLE_PLAYLISTS.filter(playlist => playlist.name.toLowerCase().includes(text.toLowerCase()));
+
+    addPlaylistsToPopup(CURRENT_SHORTCUT_ID, searchResult);
+}
+
+function initFrontend() {
+  updateShortcuts();
+  loadUserPlaylists();
+
+  document.getElementById('input-search-playlist').addEventListener('input', e => {
+    onPlaylistSearchEvent();
+  });
 }
