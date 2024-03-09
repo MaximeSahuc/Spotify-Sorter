@@ -5,9 +5,15 @@ Visualize your current music and sort it using shortcuts to add it to multiple p
 
 ## Table of contents
 
+- [Demo](#demo)
 - [Installation](#installation)
 - [Roadmap](#roadmap)
 - [Credits](#credits)
+
+
+## Demo
+
+![Demo GIF](https://github.com/MaximeSahuc/Spotify-Sorter/blob/main/doc/demo.gif?raw=true)
 
 
 ## Installation
@@ -39,8 +45,8 @@ To run the project, you need to add your Spotify App CLIENT_ID and CLIENT_SECRET
 
 The .env file should look like this:
 ```
-SPOTIFY_CLIENT_ID=REPLACE_WITH_YOUR_APP_CLIENT_ID
-SPOTIFY_CLIENT_SECRET=REPLACE_WITH_YOUR_APP_CLIENT_SECRET
+SPOTIFY_CLIENT_ID=9685c577340b1a0733e820f74f337732
+SPOTIFY_CLIENT_SECRET=e07c796204c1fd4c7bbfabe4e143a0e3
 PORT=3000
 ```
 
