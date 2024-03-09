@@ -50,10 +50,12 @@ module.exports = PORT = 3000;
 ### Running the project.
 
 Once configured you can run the project using Docker compose.\
-In the same directory as the `docker-compose.yml` file, run the following command to run the container.
+**In the same directory as the `docker-compose.yml` file**, run the following command to run the container.
 ```bash
-  docker compose up -d
+$ docker compose up -d --build
 ```
+\
+Once the container is started, you can access the app with this url [http://localhost:3000/](http://localhost:3000/)
 ## Roadmap
 
 - Player inspired by Spotify's full screen mode.
