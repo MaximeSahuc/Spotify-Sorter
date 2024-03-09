@@ -11,8 +11,6 @@ module.exports = async (req, res) => {
         .then(function (data) {
             const track = data.body.item;
 
-            res.json(track);
-            return;
             var artists = '';
             var nowPlaying = {};
             if (track) {
