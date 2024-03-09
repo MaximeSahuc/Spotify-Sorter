@@ -1,6 +1,6 @@
 var IS_IN_EDIT_MODE = false;
 var SHORTCUTS = [];
-var CURRENT_SHORTCUT_ID;
+var CURRENT_SHORTCUT_ID = 0;
 
 function updateUserInfos(username, avatar) {
     // document.getElementById('username').innerHTML = username;

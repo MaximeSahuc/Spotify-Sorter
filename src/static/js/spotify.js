@@ -48,5 +48,5 @@ async function saveTrackToPlaylists(trackId, toPlaylists) {
 
 async function loadUserPlaylists() {
   AVAILIBLE_PLAYLISTS = await getUserPlaylists();
-  addPlaylistsToPopup(0, AVAILIBLE_PLAYLISTS);
+  addPlaylistsToPopup(CURRENT_SHORTCUT_ID, AVAILIBLE_PLAYLISTS);
 }
