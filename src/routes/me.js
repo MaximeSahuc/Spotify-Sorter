@@ -3,8 +3,7 @@ require('../services/spotify');
 module.exports = async (req, res) => {
     // console.log('request to `me` endpoint');
     if (!USER_DISPLAY_NAME) {
-        res.status(401);
-        res.send('need to login first');
+        res.sendStatus(401);
         return;
     }
 
@@ -12,6 +11,8 @@ module.exports = async (req, res) => {
         .then(function (data) {
             const track = data.body.item;
 
+            res.json(track);
+            return;
             var artists = '';
             var nowPlaying = {};
             if (track) {
@@ -28,7 +29,7 @@ module.exports = async (req, res) => {
                 }
             }
 
-            res.type('json')
+            res.type('json');
             res.json(
                 {
                     username: USER_DISPLAY_NAME,
@@ -40,8 +41,7 @@ module.exports = async (req, res) => {
 
         }, function (err) {
             if (err.statusCode == 401) {
-                res.status(401);
-                res.send('need to login first');
+                res.sendStatus(401);
             } else {
                 res.send(err);
             }
