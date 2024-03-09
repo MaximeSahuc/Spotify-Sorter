@@ -17,13 +17,13 @@ Visualize your current music and sort it using shortcuts to add it to multiple p
 
 ### Create an App in Spotify's Developers Dashboard.
 
-- Go to [Spotify's Developers Dashboard](https://developer.spotify.com/dashboard) and create a new Spotify Application.
+- Go to [Spotify's Developers Dashboard](https://developer.spotify.com/dashboard) and create a new App.
 
 - In the **Redirect URIs** section, add the application's callback URL `http://localhost:3000/callback`.
 
 - Accept the Spotify's Developer Terms of Service and click the 'Save' button to create the App.
 
-- Once created, go to the 'Settings' page of the application and copy your App `CLIENT_ID` and `CLIENT_SECRET`.
+- Once created, go to the 'Settings' page of the App and copy your App `CLIENT_ID` and `CLIENT_SECRET`.
 
 > [!TIP]
 > To view your client secret click the 'View client secret' text.
