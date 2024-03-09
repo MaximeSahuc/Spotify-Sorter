@@ -181,6 +181,8 @@ function togglePlaylistSelect(id) {
     } else {
         element.classList.add('selected')
     }
+
+    saveUserConfig(SHORTCUTS);
 }
 
 function enterEditmode() {
