@@ -1,5 +1,6 @@
 var IS_IN_EDIT_MODE = false;
 var SHORTCUTS = [];
+var CURRENT_SHORTCUT_ID;
 
 function updateUserInfos(username, avatar) {
     // document.getElementById('username').innerHTML = username;
@@ -80,12 +81,14 @@ function shortcutCallback(shortcutId) {
     saveTrackToPlaylists(CURRENT_TRACK_ID, shortcut.playlists);
 }
 
-var CURRENT_SHORTCUT_ID;
 async function editShortcut(shortcutId) {
     CURRENT_SHORTCUT_ID = shortcutId;
     overlayOn();
 
     const shortcut = getShortcut(shortcutId);
+
+    // Clear search bar
+    document.getElementById('input-search-playlist').value = '';
 
     // set shortcut name in menu to last saved value
     const shortcutNameElement = document.getElementById('input-shortcut-name');
@@ -114,30 +117,23 @@ function addPlaylistsToPopup(shortcutId, playlists) {
     availiblePlaylistsContainer.innerHTML = '';
 
     // Add user's playlists
-    for (playlist of playlists) {
-        availiblePlaylistsContainer.innerHTML += createPlaylistElement(playlist.name, playlist.image, playlist.id, isPlaylistSelectedInShortcut(shortcutId, playlist.id));
+    for (playlist of AVAILIBLE_PLAYLISTS) {
+        availiblePlaylistsContainer.innerHTML += createPlaylistElement(playlist.name, playlist.image, playlist.id, isPlaylistSelectedInShortcut(shortcutId, playlist.id), playlists.includes(playlist));
     }
 }
 
 function isPlaylistSelectedInShortcut(shortcutId, playlistId) {
-    const shortcut = getShortcut(shortcutId);
-    return shortcut.playlists.includes(playlistId);
+    if (shortcutId == 0)
+        return false;
+
+    return getShortcut(shortcutId).playlists.includes(playlistId);
 }
 
 function saveShortcut(shortcutId) {
     const shortcut = getShortcut(shortcutId);
-    var selectedPlaylists = [];
 
     // update selected playlists in local variable
-    const availiblePlaylistsContainer = document.getElementById('edit-shortcut-settings-playlists-select');
-    for (let child of availiblePlaylistsContainer.children) {
-        const selected = child.classList.contains('selected');
-        if (selected) {
-            selectedPlaylists.push(child.id);
-        }
-    }
-
-    shortcut.playlists = selectedPlaylists;
+    updateShortcutSelectedPlaylists(shortcutId);
 
     // Update shortcut color in local variable
     const shortcutColor = document.getElementById('input-shortcut-color').value;
@@ -157,6 +153,28 @@ function saveShortcut(shortcutId) {
     overlayOff();
 }
 
+function updateShortcutSelectedPlaylists(shortcutId) {
+    const shortcut = getShortcut(shortcutId);
+
+    var selectedPlaylists = [];
+    const availiblePlaylistsContainer = document.getElementById('edit-shortcut-settings-playlists-container');
+
+    for (let child of availiblePlaylistsContainer.children) {
+        const selected = child.classList.contains('selected');
+
+        if (selected) {
+            selectedPlaylists.push(child.id);
+        }
+    }
+
+    shortcut.playlists = selectedPlaylists;
+}
+
+function cancelEdit() {
+    overlayOff();
+    loadUserConfig();
+}
+
 function overlayOn() {
     document.getElementsByTagName('main')[0].style.filter = 'blur(5px)';
 }
@@ -166,8 +184,8 @@ function overlayOff() {
     hideElement('edit-shortcut-overlay');
 }
 
-function createPlaylistElement(name, image, id, selected) {
-    return `<div class="playlists-select-playlist ${selected ? 'selected' : ''}" id="${id}" onclick="togglePlaylistSelect('${id}')">
+function createPlaylistElement(name, image, id, selected, shouldRender) {
+    return `<div class="playlists-select-playlist ${selected ? 'selected' : ''} ${shouldRender ? '' : 'hidden'}" id="${id}" onclick="togglePlaylistSelect('${id}')">
                 <img src="${image}" alt="playlist image" class="select-playlist-image">
                 <span class="playlists-select-playlist-name">${name}</span>
                 <div class="playlist-select-status shadows"></div>
@@ -182,7 +200,7 @@ function togglePlaylistSelect(id) {
         element.classList.add('selected')
     }
 
-    saveUserConfig(SHORTCUTS);
+    updateShortcutSelectedPlaylists(CURRENT_SHORTCUT_ID);
 }
 
 function enterEditmode() {

@@ -29,3 +29,11 @@ async function getUserConfig(userId) {
 
     return response.json();
 }
+
+async function loadUserConfig() {
+    const userConfig = await getUserConfig(USER_ID);
+    if (userConfig) {
+        SHORTCUTS = userConfig;
+        console.log('loaded user config');
+    }
+}

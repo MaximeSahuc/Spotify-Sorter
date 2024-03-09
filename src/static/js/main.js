@@ -10,13 +10,7 @@ async function init() {
     USER_ID = user.id;
     console.log('user id', USER_ID);
 
-    // load user's config
-    const userConfig = await getUserConfig(USER_ID);
-    if (userConfig) {
-        SHORTCUTS = userConfig;
-        console.log('loaded user config');
-    }
-
+    await loadUserConfig();
     initFrontend();
 
     setInterval(update, 2000); // Update player every 2 seconds
