@@ -15,7 +15,7 @@ Visualize your current music and sort it using shortcuts to add it to multiple p
 > [!NOTE]
 > This project require to have [Docker](https://www.docker.com/get-started/) installed and a Spotify account.
 
-### Create an App in Spotify's Developers Dashboard.
+### Create an App in Spotify's Developers Dashboard
 
 - Go to [Spotify's Developers Dashboard](https://developer.spotify.com/dashboard) and create a new App.
 
@@ -28,12 +28,12 @@ Visualize your current music and sort it using shortcuts to add it to multiple p
 > [!TIP]
 > To view your client secret click the 'View client secret' text.
 
-### Download the project.
+### Download the project
 ```bash
 $ git clone xxx
 ```
 
-### Configure the project.
+### Configure the project
 
 To run the project you need to add your Spotify App `CLIENT_ID` and `CLIENT_SECRET` in the `.env` file.
 
@@ -44,11 +44,10 @@ SPOTIFY_CLIENT_SECRET=e07c796204c1fd4c7bbfabe4e143a0e3
 ```
 
 > [!NOTE]
-> If you want to change the port used to access the application, you need to update it in the `docker-compose.yml` file.\
-> e.g. To run the application on port 6969 you need to replace `'3000:3000'` by `'6969:3000'` in the `docker-compose.yml` file.\
->Don't forget to **also update the callback URI** in the Spotify Application Dashboard using the new port number.
+> If you want to change the port used to access the application, you need to update it in the `d.env` file.\
+> Don't forget to **also update the callback URI** in the Spotify Application Dashboard using the new port number.
 
-### Running the project.
+### Running the project
 
 Once configured you can run the project using Docker compose.\
 **In the same directory as the `docker-compose.yml` file**, run the following command to run the container.
