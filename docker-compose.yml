@@ -4,7 +4,7 @@ services:
   spotify-sorter:
     build: .
     ports:
-      - '${PORT}:3000'
+      - '${PORT}:${PORT}'
     volumes:
       - spotify-sorter:/app/config
     env_file:
