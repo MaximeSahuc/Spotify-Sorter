@@ -50,7 +50,3 @@ async function loadUserPlaylists() {
   AVAILIBLE_PLAYLISTS = await getUserPlaylists();
   addPlaylistsToPopup(0, AVAILIBLE_PLAYLISTS);
 }
-
-function searchPlaylists(query) {
-  return; // TODO
-}
