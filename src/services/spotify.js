@@ -6,7 +6,7 @@ module.exports = USER_ID = undefined;
 module.exports = USER_AVATAR = undefined;
 
 module.exports = spotifyApi = new SpotifyWebApi({
-    clientId: SPOTIFY_CLIENT_ID,
-    clientSecret: SPOTIFY_CLIENT_SECRET,
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     redirectUri: `http://localhost:${PORT}/callback`
 });

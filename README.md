@@ -32,14 +32,12 @@ $ git clone xxx
 
 ### Configure the project.
 
-To run the project you need to add your Spotify App `CLIENT_ID` and `CLIENT_SECRET` in the `src/config.js` file.
+To run the project you need to add your Spotify App `CLIENT_ID` and `CLIENT_SECRET` in the `.env` file.
 
-Example for `src/config.js` file.
-```js
-module.exports = SPOTIFY_CLIENT_ID = '8c7e314b47d84c009f20320d6de0a936';
-module.exports = SPOTIFY_CLIENT_SECRET = '015f1794891a4c79a51b2a1d7532ba4c';
-
-module.exports = PORT = 3000;
+The `.env` file should look like this.
+```
+SPOTIFY_CLIENT_ID=9685c577340b1a0733e820f74f337732
+SPOTIFY_CLIENT_SECRET=e07c796204c1fd4c7bbfabe4e143a0e3
 ```
 
 > [!NOTE]

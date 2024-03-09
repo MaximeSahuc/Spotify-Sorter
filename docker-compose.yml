@@ -7,6 +7,9 @@ services:
       - '3000:3000'
     volumes:
       - spotify-sorter:/app/config
+    env_file:
+      - path: .env
+        required: true
 
 volumes:
   spotify-sorter:
