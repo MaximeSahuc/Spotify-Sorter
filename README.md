@@ -41,9 +41,9 @@ $ git clone git@github.com:MaximeSahuc/Spotify-Sorter.git
 
 ### Configure the project
 
-To run the project, you need to add your Spotify App CLIENT_ID and CLIENT_SECRET to the .env file.
+To run the project, you need to add your Spotify App `CLIENT_ID` and `CLIENT_SECRET` to the `.env` file.
 
-The .env file should look like this:
+The `.env` file should look like this:
 ```
 SPOTIFY_CLIENT_ID=9685c577340b1a0733e820f74f337732
 SPOTIFY_CLIENT_SECRET=e07c796204c1fd4c7bbfabe4e143a0e3
