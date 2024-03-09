@@ -1,16 +1,19 @@
 # Spotify Sorter
 
 Visualize your current music and sort it using shortcuts to add it to multiple playlists at a time.
+
+
 ## Table of contents
 
 - [Installation](#installation)
 - [Roadmap](#roadmap)
 - [Credits](#credits)
+
+
 ## Installation
 
 > [!NOTE]
 > This project require to have [Docker](https://www.docker.com/get-started/) installed and a Spotify account.
-
 
 ### Create an App in Spotify's Developers Dashboard.
 
@@ -54,11 +57,15 @@ $ docker compose up -d --build
 ```
 \
 Once the container is started, you can access the app with this url [http://localhost:3000/](http://localhost:3000/)
+
+
 ## Roadmap
 
 - Player inspired by Spotify's full screen mode.
 
 - Feature to change the order of shortcuts.
+
+
 ## Credits
 
  - This project uses the **Michael Thelin**'s [Spotify wrapper](https://github.com/thelinmichael/spotify-web-api-node) for the Spotify Web API.
